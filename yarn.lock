@@ -399,6 +399,28 @@
     "@ethersproject/properties" "^5.7.0"
     "@ethersproject/strings" "^5.7.0"
 
+"@humanwallet/contracts@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@humanwallet/contracts/-/contracts-0.5.0.tgz#1aec0dfa5fd900cd37839bf1ddd50728ad917673"
+  integrity sha512-CsUe6pbPnaG0YNBSEee5Ldo7/2qHn4TVptA+Z3WWdao/iVPEhNUfNm5kzZY9YCZsJeMgCucEJcReVNDW9JHgvQ==
+
+"@humanwallet/sdk@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@humanwallet/sdk/-/sdk-0.5.1.tgz#79de987f45eb8f92d55627fc5528ba7c3ac73518"
+  integrity sha512-XRJMIJGnMwEbsxATmFM1HEGM+MGElOqhRfGfVfbG0g91vJkpOo+zIUUM1CTgVB96wKuUpU+4Yve/B7ktLuy0KQ==
+  dependencies:
+    "@account-abstraction/contracts" "^0.5.0"
+    "@account-abstraction/utils" "^0.5.0"
+    "@ethersproject/abstract-provider" "^5.7.0"
+    "@ethersproject/abstract-signer" "^5.7.0"
+    "@ethersproject/networks" "^5.7.0"
+    "@ethersproject/properties" "^5.7.0"
+    "@ethersproject/providers" "^5.7.0"
+    "@humanwallet/contracts" "^0.5.0"
+    "@types/debug" "^4.1.7"
+    debug "^4.3.4"
+    ethers "^5.7.0"
+
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.7"
   resolved "https://registry.npmjs.org/@humanwhocodes/config-array/-/config-array-0.11.7.tgz"
