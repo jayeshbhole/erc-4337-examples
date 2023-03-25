@@ -17,9 +17,7 @@ export default async function main(t: string, amt: string, withPM: boolean) {
     : undefined;
   const accountAPI = getHumanAccount(
     provider,
-    // config.ownerKey,
-    // config.ownerKey,
-    config.deviceKey,
+    config.ownerKey,
     config.deviceKey,
     config.entryPoint,
     config.humanAccountFactory,
