@@ -23,8 +23,9 @@ program
 
 program
   .command("register")
+  .option("-pm, --withPaymaster", "Use a paymaster for this transaction")
   .description("Register a key as a device key for the human account.")
-  .action(register);
+  .action(async (opts) => register(Boolean(opts.withPaymaster)));
 
 program
   .command("transfer")

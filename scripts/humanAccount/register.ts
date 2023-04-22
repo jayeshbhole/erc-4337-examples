@@ -4,13 +4,17 @@ import {
   getGasFee,
   printOp,
   getHttpRpcClient,
+  getVerifyingPaymaster,
 } from "../../src";
 
 import config from "../../config.json";
 
-export default async function main() {
+export default async function main(withPM: boolean) {
   const provider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
   const deviceProvider = new ethers.providers.JsonRpcProvider(config.rpcUrl);
+  const paymasterAPI = withPM
+    ? getVerifyingPaymaster(config.paymasterUrl, config.entryPoint)
+    : undefined;
 
   const ownerWallet = new ethers.Wallet(config.ownerKey, provider);
   const deviceWallet = new ethers.Wallet(config.deviceKey, deviceProvider);
@@ -21,12 +25,14 @@ export default async function main() {
   const accountAPI = getHumanAccount(
     provider,
     config.ownerKey,
-    config.deviceKey,
+    config.ownerKey,
     config.entryPoint,
     config.humanAccountFactory,
-    config.humanAccountUsername
+    config.humanAccountUsername,
+    paymasterAPI
   );
-  console.log("human account", await accountAPI.getAccountAddress());
+  console.log("\nhuman account", await accountAPI.getAccountAddress());
+  console.log("\nowner account", await ownerWallet.getAddress());
 
   const accountContract = await accountAPI._getAccountContract();
 
@@ -38,12 +44,12 @@ export default async function main() {
   const isDeviceRegistered =
     isAccountDeployed && (await accountContract.deviceKeys(deviceAddress));
 
-  // console.log(
-  //   "isAccountDeployed",
-  //   isAccountDeployed,
-  //   "isDeviceRegistered",
-  //   isDeviceRegistered
-  // );
+  console.log(
+    "isAccountDeployed",
+    isAccountDeployed,
+    "isDeviceRegistered",
+    isDeviceRegistered
+  );
 
   if (!isAccountDeployed || !isDeviceRegistered) {
     console.log("===registering device key", deviceAddress);
